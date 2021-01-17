@@ -25,6 +25,17 @@
       </div>
 
       <div class="form-group">
+        <label> Company Name </label> <br />
+        <%= collection_select(:Company, :id, Company.all, :id, :name, {},{:class => 'form-control'}) %>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="admin" name = "admin">
+        <label class="form-check-label" for="admin">Is User an Admin?</label>
+      </div>
+
+
+
+      <div class="form-group">
         <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg" %>
       </div>
     <% end %>

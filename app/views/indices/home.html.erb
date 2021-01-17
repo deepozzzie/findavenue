@@ -1,7 +1,6 @@
 <div id="venue_map" class="venue_type">
   <div id="map_div" style="height: 80vh;"></div>
 </div>
-
 <script>
 
 function initMap() {
@@ -169,7 +168,7 @@ infowindows = [];
 							infowindow.open(map, mark);
 						});
 					}
-					else{
+					else if(maps_data[i]['color'] == "red"){
 						 marker = new google.maps.Marker({
             	position: new google.maps.LatLng(parseFloat(maps_data[i]['lat']), parseFloat(maps_data[i]['long'])),
             	map: map,
@@ -183,6 +182,21 @@ infowindows = [];
 							infowindow.open(map, mark);
 						});
 					}
+          else {
+             marker = new google.maps.Marker({
+              position: new google.maps.LatLng(parseFloat(maps_data[i]['lat']), parseFloat(maps_data[i]['long'])),
+              map: map,
+              title: maps_data[i]['name'],
+              icon: "https://images-findavenue.s3-ap-southeast-2.amazonaws.com/gray-dot.png"
+            });
+            marker.addListener("click", function(mapsMouseEvent) {
+              console.log(mapsMouseEvent.latLng.lat());
+              mark = returnMarker(markers, mapsMouseEvent.latLng);
+              console.log(mark);
+              closeInfowindows(infowindows);
+              infowindow.open(map, mark);
+            });
+          }
 							markers.push(marker);
 							//infowindow.open(map, marker);
 							//console.log(infowindow);

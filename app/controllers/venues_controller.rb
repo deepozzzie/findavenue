@@ -67,6 +67,9 @@ class VenuesController < ApplicationController
       else
         @color = "green"
       end
+      if u.is_active == false
+        @color = "gray"
+      end
       { :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
     end
     @json = @userlist.to_json

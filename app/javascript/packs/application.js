@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import '../stylesheets/application'
 import './bootstrap_custom.js'
+const images = require.context('../images', true)
 require('datatables.net-bs4')
 
 import $ from 'jquery';

@@ -78,13 +78,13 @@
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         <%if current_user.nil? == true %><p class="notice h1"><%=current_user.company.name%></p><%end%>
-        <p class="alert"><%= alert %></p>
+        <p class="notice"><%= notice %></p>
         <%= yield %>
       </main>
       <%else%>
       <main role="main" class="col-md-12 col-lg-12 col-sm-12">
       <%if current_user.nil? == false %>  <p class="notice h1"><%=current_user.company.name%></p> <%end%>
-        <p class="alert"><%= alert %></p>
+        <p class="notice"><%= notice %></p>
         <%= yield %>
       </main>
       <%end%>

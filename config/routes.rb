@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   resources :companies
-  devise_for :users
+  devise_for :users,
+    controllers: {:registrations => "user/registrations"}
   resources :indices
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  as :user do
+    get "/register", to: "registrations#new", as: "register"
+  end
   root 'indices#home'
   get "dashboard", to:  "indices#index"
   get 'home', to: 'indices#home'
