@@ -82,5 +82,3 @@ test:
 production:
   <<: *default
   database: findavenue_production
-  username: findavenue
-  password: <%= ENV['FINDAVENUE_DATABASE_PASSWORD'] %>
