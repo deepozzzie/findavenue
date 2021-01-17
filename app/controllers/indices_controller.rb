@@ -1,5 +1,5 @@
 class IndicesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:home]
   # GET /indices
   # GET /indices.json
   def index
