@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:return_all_venues]
 
 
   # GET /venues
