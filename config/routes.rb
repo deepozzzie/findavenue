@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :indices
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'indices#home'
-  get "index", to:  "indices#index"
+  get "dashboard", to:  "indices#index"
   get 'home', to: 'indices#home'
 
   get 'venue', to: "venues#index"
