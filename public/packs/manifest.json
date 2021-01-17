@@ -1,0 +1,34 @@
+{
+  "application.js": "/packs/js/application-1bd25dc21ad4b74979a1.js",
+  "application.js.map": "/packs/js/application-1bd25dc21ad4b74979a1.js.map",
+  "bootstrap_custom.js": "/packs/js/bootstrap_custom-43522c29f73dc9f433d6.js",
+  "bootstrap_custom.js.map": "/packs/js/bootstrap_custom-43522c29f73dc9f433d6.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-1bd25dc21ad4b74979a1.js"
+      ],
+      "js.map": [
+        "/packs/js/application-1bd25dc21ad4b74979a1.js.map"
+      ]
+    },
+    "bootstrap_custom": {
+      "js": [
+        "/packs/js/bootstrap_custom-43522c29f73dc9f433d6.js"
+      ],
+      "js.map": [
+        "/packs/js/bootstrap_custom-43522c29f73dc9f433d6.js.map"
+      ]
+    },
+    "venues": {
+      "js": [
+        "/packs/js/venues-f50e6209ce22b5fbcc76.js"
+      ],
+      "js.map": [
+        "/packs/js/venues-f50e6209ce22b5fbcc76.js.map"
+      ]
+    }
+  },
+  "venues.js": "/packs/js/venues-f50e6209ce22b5fbcc76.js",
+  "venues.js.map": "/packs/js/venues-f50e6209ce22b5fbcc76.js.map"
+}

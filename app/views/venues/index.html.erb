@@ -1,0 +1,46 @@
+<div class = "row space_avaliable" id="available" onclick="set_venue_status(0)">
+
+</div>
+<div class = "row space_almost_out" id="almost_out" onclick="set_venue_status(1)">
+
+</div>
+<div class = "row space_not_avaliable" id="out" onclick="set_venue_status(2)">
+
+</div>
+<script type="text/javascript">
+  function set_venue_status(status){
+    if( status == 0){
+      document.getElementById('available').style="opacity: 1";
+      document.getElementById('almost_out').style="opacity: 0.5";
+      document.getElementById('out').style="opacity: 0.5";
+      $.ajax({
+        type: "POST",
+        url: "<%=set_company_capacity_path%>",
+        data: {"venue_capacity":"0"}
+      });
+
+
+    }
+    if( status == 1){
+      document.getElementById('available').style="opacity: 0.5";
+      document.getElementById('almost_out').style="opacity: 1";
+      document.getElementById('out').style="opacity: 0.5";
+      $.ajax({
+        type: "POST",
+        url: "<%=set_company_capacity_path%>",
+        data: {"venue_capacity":"50"}
+      });
+    }
+    if( status == 2){
+      document.getElementById('available').style="opacity: 0.5";
+      document.getElementById('almost_out').style="opacity: 0.5";
+      document.getElementById('out').style="opacity: 1";
+      $.ajax({
+        type: "POST",
+        url: "<%=set_company_capacity_path%>",
+        data: {"venue_capacity":"100"}
+      });
+    }
+  }
+
+</script>

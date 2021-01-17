@@ -1,0 +1,234 @@
+<div id="venue_map" class="venue_type">
+  <div id="map_div" style="height: 80vh;"></div>
+</div>
+
+<script>
+
+function initMap() {
+			var settings = {
+		"url": "<%=getall_all_venues_path%>",
+		"method": "GET",
+		"timeout": 0,
+	};
+
+	$.ajax(settings).done(function (response) {
+		var maps_data = JSON.parse(response);
+		console.log(maps_data[0].lat);
+    console.log(maps_data[0].lat);
+		var myLatLng = {lat: parseFloat(maps_data[0].lat), lng: parseFloat(maps_data[0].long)};
+    console.log(myLatLng);
+			var map = new google.maps.Map(document.getElementById('map_div'), {
+				zoom: 15,
+				center: myLatLng,
+				styles: [
+    {
+        "featureType": "administrative",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.attraction",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.business",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.business",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.business",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.government",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.school",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.school",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    }
+]
+			});
+
+markers = [];
+infowindows = [];
+		//all markers
+		//
+		    for (i = 0; i < maps_data.length; i++) {
+					console.log(maps_data[i]);
+          console.log(maps_data.length);
+          console.log(i);
+						var myLatLng = {lat: parseFloat(maps_data[i].lat), lng: parseFloat(maps_data[i].long)};
+            console.log(myLatLng);
+					  const infowindow = new google.maps.InfoWindow({
+  				  	content: maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <a href = " +maps_data[i]['link']+"> Pre Sign in & add yourself to the waitlist. </a>",
+							position: { lat: maps_data[i].lat, lng: maps_data[i].long },
+ 						});
+					//infowindows.push(infowindow);
+					//console.log(infowindows);
+					if(maps_data[i]['color'] == "green"){
+      		  marker = new google.maps.Marker({
+            	position: new google.maps.LatLng(parseFloat(maps_data[i]['lat']), parseFloat(maps_data[i]['long'])),
+            	map: map,
+					  	title: maps_data[i]['name'],
+							icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+        		});
+					  marker.addListener("click", function(mapsMouseEvent) {
+							console.log(mapsMouseEvent.latLng.lat());
+							mark = returnMarker(markers, mapsMouseEvent.latLng);
+							console.log(mark);
+							closeInfowindows(infowindows);
+							infowindow.open(map, mark);
+						});
+					}
+					else if(maps_data[i]['color'] == "orange"){
+						 marker = new google.maps.Marker({
+            	position: new google.maps.LatLng(parseFloat(maps_data[i]['lat']), parseFloat(maps_data[i]['long'])),
+            	map: map,
+					  	title: maps_data[i]['name'],
+							icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+        		});
+					  marker.addListener("click", function(mapsMouseEvent) {
+							console.log(mapsMouseEvent.latLng.lat());
+							mark = returnMarker(markers, mapsMouseEvent.latLng);
+							console.log(mark);
+							closeInfowindows(infowindows);
+							infowindow.open(map, mark);
+						});
+					}
+					else{
+						 marker = new google.maps.Marker({
+            	position: new google.maps.LatLng(parseFloat(maps_data[i]['lat']), parseFloat(maps_data[i]['long'])),
+            	map: map,
+					  	title: maps_data[i]['name']
+        		});
+					  marker.addListener("click", function(mapsMouseEvent) {
+							console.log(mapsMouseEvent.latLng.lat());
+							mark = returnMarker(markers, mapsMouseEvent.latLng);
+							console.log(mark);
+							closeInfowindows(infowindows);
+							infowindow.open(map, mark);
+						});
+					}
+							markers.push(marker);
+							//infowindow.open(map, marker);
+							//console.log(infowindow);
+							if(maps_data[i]['color'] != 'red')
+								infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <a href = " +maps_data[i]['link']+"> Covid-19 Sign in. </a>" )
+								{
+									console.log(infowindow.getContent());
+								}
+							infowindows.push(infowindow);
+  	  }
+
+	});
+}
+
+
+function returnMarker(markers, info){
+	var mark ="";
+	for(i=0; i<markers.length; i++){
+		//console.log("markers: " + markers[i].position.lat());
+		//console.log("markers: " + markers[i].title);
+		//console.log("infowindow: " + info.content);
+		if((markers[i].position.lat() == info.lat()) && markers[i].position.lng() == info.lng()){
+			mark = markers[i];
+		}
+	}
+
+	return mark
+}
+function closeInfowindows(infowindows){
+		for(i=0; i<infowindows.length; i++){
+			infowindows[i].close();
+	}
+}
+function openCity(cityName) {
+  var i;
+  var x = document.getElementsByClassName("venue_type");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+	if(cityName == 'venue_map'){
+		document.getElementById('map_div').style.width="100%";
+	}
+  document.getElementById(cityName).style.display = "block";
+}
+
+</script>
+
+<script defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7Cpwya87bUmnIMkFc1penQMVhNkpUaaU&amp;callback=initMap">
+</script>

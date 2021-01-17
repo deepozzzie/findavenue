@@ -1,0 +1,26 @@
+<html lang="en" dir="ltr" style="height:100vh">
+  <head>
+    <meta charset="utf-8">
+    <title>Find a Venue</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+  </head>
+  <body style="height:100vh">
+      <p class="notice h1"><%=current_user.company.name%></p>
+    <% if flash[:alert].nil? == false %>
+      <p class="alert"><%= alert %></p>
+    <%end%>
+    <%= yield %>
+
+    <a href="<%=root_path%>" class="float">
+      <i class="fa fa-arrow-left my-float"></i>
+    </a>
+    <%= javascript_pack_tag 'venues', 'data-turbolinks-track': 'reload' %>
+  </body>
+</html>

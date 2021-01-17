@@ -9,7 +9,8 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
-
+/node_modules/
+/log/
 # Used by dotenv library to load environment variables.
 # .env
 
@@ -31,7 +32,6 @@ build-iPhoneSimulator/
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 # vendor/Pods/
-
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/
@@ -54,3 +54,4 @@ build-iPhoneSimulator/
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
+node_modules/.bin/acorn
