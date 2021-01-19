@@ -13,6 +13,7 @@ class ContactUsMailer < ApplicationMailer
   def request_company(params)
     @first_name = params[:first_name]
     @company_name = Company.find_by(id: params[:company_id]).name
+    @phone_number = params[:phone_number]
     mail(to:"theeufj@gmail.com", subject: "Request Company")
   end
 end
