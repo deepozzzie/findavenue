@@ -60,9 +60,7 @@ class VenuesController < ApplicationController
     @venues = Company.all
 
     @userlist = @venues.map do |u|
-        link = "https://demo.findavenue.io/venue/patron/new/"
-
-        link = "https://venues.findavenue.io/venue/patron/new/"
+      link = u.link
 
       @max_cap = u.capacity
       @per_full = (u.percentage_full)

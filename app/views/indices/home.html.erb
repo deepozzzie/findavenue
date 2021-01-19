@@ -203,6 +203,10 @@ infowindows = [];
                   infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('request_venue').showModal();  onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> Request Venue Details! </p>" )
                     infowindows.push(infowindow);
                   }
+                if(maps_data[i]['color'] == 'green' || maps_data[i]['color'] == 'green'  ){
+                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <a href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'> Covid Sign In! </p>" )
+                    infowindows.push(infowindow);
+                  }
 							infowindows.push(infowindow);
   	  }
 
