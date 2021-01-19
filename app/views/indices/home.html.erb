@@ -130,7 +130,7 @@ infowindows = [];
           console.log(maps_data);
 						var myLatLng = {lat: parseFloat(maps_data[i].lat), lng: parseFloat(maps_data[i].long)};
 					  const infowindow = new google.maps.InfoWindow({
-  				  	content: maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <a href = " +maps_data[i]['link']+"> Pre Sign in & add yourself to the waitlist. </a>",
+  				  	content: maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('venue_list').showModal()> Pre Sign in & add yourself to the waitlist. </p>",
 							position: { lat: parseFloat(maps_data[i].lat), lng: parseFloat(maps_data[i].long) },
  						});
 					//infowindows.push(infowindow);
@@ -194,7 +194,7 @@ infowindows = [];
               console.log(infowindows);
 							// infowindow.open(map, marker);
 							if(maps_data[i]['color'] != 'red'){
-								infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <a href = " +maps_data[i]['link']+"> Covid-19 Sign in. </a>" )
+								infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('venue_list').showModal()> Covid-19 Sign in. </p>" )
 
                   infowindows.push(infowindow);
 								}
