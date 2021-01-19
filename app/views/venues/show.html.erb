@@ -1,34 +1,34 @@
 <%if current_user.company.percentage_full == 0%>
   <div class = "row space_avaliable-100 show-div" id="available" onclick="set_venue_status(0)">
-    <%= render "partials/maps" %>
+
   </div>
   <div class = "row space_almost_out-100 hide-div" id="almost_out" onclick="set_venue_status(1)">
-    <%= render "partials/maps" %>
+
   </div>
   <div class = "row space_not_avaliable-100 hide-div" id="out" onclick="set_venue_status(2)">
-    <%= render "partials/maps" %>
+
   </div>
 <%end%>
 <%if current_user.company.percentage_full == 100%>
   <div class = "row space_avaliable-100 hide-div" id="available" onclick="set_venue_status(0)">
-    <%= render "partials/maps" %>
+
   </div>
   <div class = "row space_almost_out-100 hide-div" id="almost_out" onclick="set_venue_status(1)">
-    <%= render "partials/maps" %>
+
   </div>
   <div class = "row space_not_avaliable-100 show-div" id="out" onclick="set_venue_status(2)">
-    <%= render "partials/maps" %>
+
   </div>
 <%end%>
 <%if current_user.company.percentage_full == 50%>
   <div class = "row space_avaliable-100 hide-div" id="available" onclick="set_venue_status(0)">
-    <%= render "partials/maps" %>
+
   </div>
   <div class = "row space_almost_out-100 show-div" id="almost_out" onclick="set_venue_status(1)">
-    <%= render "partials/maps" %>
+
   </div>
   <div class = "row space_not_avaliable-100 hide-div" id="out" onclick="set_venue_status(2)">
-    <%= render "partials/maps" %>
+    
   </div>
 <%end%>
 

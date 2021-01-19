@@ -12,6 +12,9 @@ class CompaniesController < ApplicationController
   def show
   end
 
+  def audit
+  end
+
   # GET /companies/new
   def new
     @company = Company.new

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'indices#home'
   get "dashboard", to:  "indices#index"
   get 'home', to: 'indices#home'
+  get 'audit', to: 'companies#audit'
 
   get 'venue', to: "venues#index"
   get "display_venue", to: "venues#show"

@@ -45,6 +45,9 @@
                 <a href="<%=display_venue_path%>" class="list-group-item list-group-item-action bg-dark text-white">
                     <span class="menu-collapsed">View Venue Status</span>
                 </a>
+                <!-- <a href="<%=audit_path%>" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">View Company Audit</span>
+                </a> -->
               <%end%>
                 <%if current_user.admin?%>
                   <a href="<%=new_company_path%>" class="list-group-item list-group-item-action bg-dark text-white">
@@ -53,6 +56,7 @@
                   <a href="<%=companies_path%>" class="list-group-item list-group-item-action bg-dark text-white">
                       <span class="menu-collapsed">View Companies</span>
                   </a>
+
                 <%end%>
 
               </div>

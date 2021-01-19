@@ -15,8 +15,13 @@ class VenuesController < ApplicationController
         # 3 we are full and are about to crack a leak.
       if current_user.company.percentage_full == 0
         Patron.first.text_waitlist(current_user)
+        Audit.create(venue_name: current_user.company.name, venue_capcity: 0)
       elsif current_user.company.percentage_full == 50
         Patron.first.text_waitlist(current_user)
+        Audit.create(venue_name: current_user.company.name, venue_capcity: 50)
+      end
+      if current_user.company.percentage_full ==100
+        Audit.create(venue_name: current_user.company.name, venue_capcity: 100)
       end
       respond_to do |format|
         format.html
