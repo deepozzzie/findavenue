@@ -38,12 +38,14 @@
               </a>
               <!-- Submenu content -->
               <div id='submenu1' class="collapse sidebar-submenu">
+              <%if current_user.company_id != nil%>
                 <a href="<%=venue_path%>" class="list-group-item list-group-item-action bg-dark text-white">
                     <span class="menu-collapsed">Set Venue Status</span>
                 </a>
                 <a href="<%=display_venue_path%>" class="list-group-item list-group-item-action bg-dark text-white">
                     <span class="menu-collapsed">View Venue Status</span>
                 </a>
+              <%end%>
                 <%if current_user.admin?%>
                   <a href="<%=new_company_path%>" class="list-group-item list-group-item-action bg-dark text-white">
                       <span class="menu-collapsed">Create Company</span>
