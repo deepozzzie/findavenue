@@ -130,7 +130,7 @@ infowindows = [];
           console.log(maps_data);
 						var myLatLng = {lat: parseFloat(maps_data[i].lat), lng: parseFloat(maps_data[i].long)};
 					  const infowindow = new google.maps.InfoWindow({
-  				  	content: maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('venue_list').showModal()> Pre Sign in & add yourself to the waitlist. </p>",
+  				  	content: maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('venue_list').showModal(); onmouseover = document.getElementById('company_id').value="+maps_data[i]['id']+"> Pre Sign in & add yourself to the waitlist. </p>",
 							position: { lat: parseFloat(maps_data[i].lat), lng: parseFloat(maps_data[i].long) },
  						});
 					//infowindows.push(infowindow);
@@ -169,8 +169,10 @@ infowindows = [];
             	map: map,
 					  	title: maps_data[i]['name']
         		});
+
 					  marker.addListener("click", function(mapsMouseEvent) {
              console.log(markers);
+
 							mark = returnMarker(markers, mapsMouseEvent.latLng);
 							closeInfowindows(infowindows);
 							infowindow.open(map, mark);
@@ -193,11 +195,14 @@ infowindows = [];
               console.log(markers);
               console.log(infowindows);
 							// infowindow.open(map, marker);
-							if(maps_data[i]['color'] != 'red'){
-								infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('venue_list').showModal()> Covid-19 Sign in. </p>" )
-
+							if(maps_data[i]['color'] == 'red'){
+								infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('venue_list').showModal();  onmouseover = document.getElementById('company_id').value="+maps_data[i]['id']+"> Join Waitlist. </p>" )
                   infowindows.push(infowindow);
 								}
+                if(maps_data[i]['color'] == 'gray'){
+                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('request_venue').showModal();  onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> Request Venue Details! </p>" )
+                    infowindows.push(infowindow);
+                  }
 							infowindows.push(infowindow);
   	  }
 

@@ -62,3 +62,5 @@ gem 'devise'
 gem 'devise-bootstrapped'
 
 gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
+gem 'twilio-ruby'
+gem 'sendinblue'

@@ -18,4 +18,7 @@ Rails.application.routes.draw do
 
   post 'set_company_capacity', to: 'venues#set_company_capacity'
   post 'change_page', to: 'venues#change_page_percentage_full'
+  post 'add_patron', to: 'indices#add_patron_to_venue'
+  post 'contact_us', to: 'indices#contact_us'
+  post 'request_company', to: 'indices#request_company'
 end

@@ -11,6 +11,13 @@ class VenuesController < ApplicationController
 
   def set_company_capacity
     if current_user.company.update(percentage_full:params[:venue_capacity])
+        # this function we need to take in the param of 1, 2, or 3. Where 1 is at capacity, 2 is filling up fast
+        # 3 we are full and are about to crack a leak.
+      if current_user.company.percentage_full == 0
+        Patron.first.text_waitlist(current_user)
+      elsif current_user.company.percentage_full == 50
+        Patron.first.text_waitlist(current_user)
+      end
       respond_to do |format|
         format.html
         format.js { render js: ""}
@@ -70,7 +77,8 @@ class VenuesController < ApplicationController
       if u.is_active == false
         @color = "gray"
       end
-      { :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
+
+      { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
     end
     @json = @userlist.to_json
     respond_to do |format|
