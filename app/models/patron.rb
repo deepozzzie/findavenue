@@ -1,9 +1,8 @@
 require 'twilio-ruby'
 class Patron < ApplicationRecord
   belongs_to :company
-
   def text_details(to_number)
-    if to_number[0].to_i == 0
+    if to_number[1].to_i == 4
       to_number[0] = "+61"
     end
     account_sid = ENV['twilio_account_ssid']
@@ -28,6 +27,7 @@ class Patron < ApplicationRecord
       @error = error
       return false
     end
+    byebug
   end
 
   def text_waitlist(current_user)

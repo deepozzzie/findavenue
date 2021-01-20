@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   post 'add_patron', to: 'indices#add_patron_to_venue'
   post 'contact_us', to: 'indices#contact_us'
   post 'request_company', to: 'indices#request_company'
-  post 'message_patron/:id', to: 'companies#message_patron', as: "message_patron"
+  post 'message_patron', to: 'companies#message_patron', as: "message_patron"
 end

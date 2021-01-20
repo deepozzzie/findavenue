@@ -70,7 +70,16 @@
                       <%end%>
                       <td><%= company.created_at %></td>
                       <td><%= company.updated_at %></td>
-                      <td><a href="<%=message_patron_path(company.id)%>"> Message Patron </a></td>
+                      <td><form action = "<%=message_patron_path%>" id="message_patron-<%=company.id%>" data-remote='true'" method="post"  id="patron-<%=company.id%>">
+                        <input type="hidden" name="id" value="<%=company.id%>">
+                        <button type="submit" class="btn btn-primary">
+                          Send Message
+                        </button>
+
+                      </form>
+                      <p id="message_success_patron-<%=company.id%>" style="display:none;"> Message Sent </p>
+
+                      </td>
 
         <% end %>
       <% end %>
@@ -78,3 +87,22 @@
   </table>
   <%end%>
 </div>
+<script>
+//Request Venue Details
+$("#message_patron").submit(function(e) {
+
+  e.preventDefault(); // avoid to execute the actual submit of the form.
+
+  var form = $(this);
+  var url = form.attr('action');
+
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: form.serialize(), // serializes the form's elements.
+    datatype: "script"
+  });
+
+});
+
+</script>

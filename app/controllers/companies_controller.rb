@@ -16,10 +16,11 @@ class CompaniesController < ApplicationController
   end
 
   def message_patron
-    @patron = Patron.find_by(params[:id])
+    @patron = Patron.find(params['id'].to_i)
     if @patron.text_details(@patron.phone_number)
+       @patron.update(waitlist: false)
       respond_to do |format|
-          format.js { render js: "" }
+          format.js { render js: "document.getElementById('message_patron-#{params['id']}').style.display='none';document.getElementById('message_success_patron-#{params['id']}').style.display='block';" }
         end
     end
 
