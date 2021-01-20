@@ -247,7 +247,7 @@ function openCity(cityName) {
 	}
   document.getElementById(cityName).style.display = "block";
 }
-
+  setInterval(function(){ initMap(); }, 30000);
 </script>
 
 <script defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7Cpwya87bUmnIMkFc1penQMVhNkpUaaU&amp;callback=initMap">
