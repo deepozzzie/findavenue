@@ -40,21 +40,21 @@ class VenuesController < ApplicationController
       respond_to do |format|
         format.html
         format.js { render js: "document.getElementById('available').style='display: block;'
-          document.getElementById('almost_out').style='display: none;'
-          document.getElementById('out').style='display: none;'"}
+          document.getElementById('almost_out').style='display: block;'
+          document.getElementById('out').style='display: block;'"}
         end
     elsif current_user.company.percentage_full == 50
       respond_to do |format|
         format.html
-        format.js { render js: "document.getElementById('available').style='display: none;'
+        format.js { render js: "document.getElementById('available').style='display: block;'
           document.getElementById('almost_out').style='display: block;'
-          document.getElementById('out').style='display: none;'"}
+          document.getElementById('out').style='display: block;'"}
         end
     else
       respond_to do |format|
         format.html
-        format.js { render js: "document.getElementById('available').style='display: none;'
-          document.getElementById('almost_out').style='display: none;'
+        format.js { render js: "document.getElementById('available').style='display: block;'
+          document.getElementById('almost_out').style='display: block;'
           document.getElementById('out').style='display: block;'"}
         end
       end

@@ -9,7 +9,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
   </head>
   <body style="height:100vh">
       <p class="notice h1"><%=current_user.company.name%></p>
@@ -18,7 +18,7 @@
     <%end%>
     <%= yield %>
 
-    <a href="<%=root_path%>" class="float">
+    <a href="<%=dashboard_path%>" class="float">
       <i class="fa fa-arrow-left my-float"></i>
     </a>
     <%= javascript_pack_tag 'venues', 'data-turbolinks-track': 'reload' %>
