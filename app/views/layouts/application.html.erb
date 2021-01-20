@@ -62,6 +62,7 @@
               </div>
 
               <!-- Menu with submenu -->
+              <% if current_user.admin == true%>
               <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                   <div class="d-flex w-100 justify-content-start align-items-center">
                       <span class="fa fa-dashboard fa-fw mr-3"></span>
@@ -75,6 +76,7 @@
                       <span class="menu-collapsed">Create User</span>
                   </a>
               </div>
+              <%end%>
             </ul>
             <footer class="nav-footer" style="bottom: 0">
               © 2021, <a href="www.findavenue.io">www.findavenue.io</a>
