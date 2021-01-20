@@ -29,6 +29,7 @@
         <%= collection_select(:Company, :id, Company.all, :id, :name, {},{:class => 'form-control'}) %>
       </div>
       <div class="form-check">
+        <p> Only make an admin if the user is working for findavenue.io. Do not make a venue an admin </p>
         <input type="checkbox" class="form-check-input" id="admin" name = "admin">
         <label class="form-check-label" for="admin">Is User an Admin?</label>
       </div>

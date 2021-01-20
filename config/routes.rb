@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "/register", to: "registrations#new", as: "register"
   end
   root 'indices#home'
-  get "dashboard", to:  "indices#index"
+  get "dashboard", to:  "companies#index"
   get 'home', to: 'indices#home'
   get 'audit', to: 'companies#audit'
 
@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   post 'add_patron', to: 'indices#add_patron_to_venue'
   post 'contact_us', to: 'indices#contact_us'
   post 'request_company', to: 'indices#request_company'
+  post 'message_patron/:id', to: 'companies#message_patron', as: "message_patron"
 end

@@ -19,7 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def check_admin
     if current_user.admin? == false
-      redirect_to dashboard_path\
+      redirect_to dashboard_path
     end
   end
 

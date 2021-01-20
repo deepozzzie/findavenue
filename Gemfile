@@ -56,7 +56,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #devise
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '1.1.0'
 
 gem 'devise'
 gem 'devise-bootstrapped'
@@ -64,3 +64,5 @@ gem 'devise-bootstrapped'
 gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
 gem 'twilio-ruby'
 gem 'sendinblue'
+
+gem "figaro"

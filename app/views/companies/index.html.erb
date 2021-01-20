@@ -1,9 +1,11 @@
 <div class="page-header">
-  <%= link_to new_company_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Company
+  <% if current_user.admin == true %>
+    <%= link_to new_company_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Company
+    <% end %>
   <% end %>
-  <h1>Listing companies</h1>
+  <h1>Your Companies</h1>
 </div>
 
 <div class="table-responsive">
@@ -40,4 +42,39 @@
       <% end %>
     </tbody>
   </table>
+</div>
+<% if @patrons.empty? == false %>
+<h1> Patrons on the waitlist </h1>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <%if current_user.admin == true%>
+            <th> Company Name </th>
+            <%end%>
+            <th>Created at </th>
+            <th> Updated At </th>
+            <th> Send message </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @patrons.each do |company| %>
+        <%= content_tag :tr, id: dom_id(company), class: dom_class(company) do %>
+                      <td><%= company.first_name %></td>
+                      <td><%= company.phone_number %></td>
+                      <%if current_user.admin == true%>
+                      <th><%=Company.find(company.company_id).name%></th>
+                      <%end%>
+                      <td><%= company.created_at %></td>
+                      <td><%= company.updated_at %></td>
+                      <td><a href="<%=message_patron_path(company.id)%>"> Message Patron </a></td>
+
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <%end%>
 </div>
