@@ -8,10 +8,12 @@ class CompaniesController < ApplicationController
   def index
     if current_user.admin == true
       @companies = Company.all
-      @patrons = Patron.where(waitlist: true)
+      @patrons = Patron.where(waitlist: true, created_at:  (Time.now - 3.hours)..Time.now)
+
     else
       @companies = Company.where(id: current_user.company_id)
-      @patrons = Patron.where(company_id: current_user.company_id, waitlist: true)
+      @patrons = Patron.where(company_id: current_user.company_id, waitlist: true, created_at:  (Time.now - 3.hours)..Time.now)
+
     end
   end
 

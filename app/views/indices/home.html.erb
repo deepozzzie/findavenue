@@ -200,7 +200,7 @@ infowindows = [];
                   infowindows.push(infowindow);
 								}
                 if(maps_data[i]['color'] == 'gray'){
-                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('request_venue').showModal();  onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> This venue is not active at this time. </p>" )
+                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='' style='font-weight:bold;, text-align: center;' onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> This venue is not active at this time. </p>" )
                     infowindows.push(infowindow);
                   }
                 if(maps_data[i]['color'] == 'green' || maps_data[i]['color'] == 'green'  ){
@@ -252,3 +252,5 @@ function openCity(cityName) {
 
 <script defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7Cpwya87bUmnIMkFc1penQMVhNkpUaaU&amp;callback=initMap">
 </script>
+
+ <!-- <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('request_venue').showModal();  onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> This venue is not active at this time. </p>" ) -->
