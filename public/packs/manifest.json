@@ -1,15 +1,15 @@
 {
-  "application.js": "/packs/js/application-1bd25dc21ad4b74979a1.js",
-  "application.js.map": "/packs/js/application-1bd25dc21ad4b74979a1.js.map",
+  "application.js": "/packs/js/application-64476a50092970647dd6.js",
+  "application.js.map": "/packs/js/application-64476a50092970647dd6.js.map",
   "bootstrap_custom.js": "/packs/js/bootstrap_custom-43522c29f73dc9f433d6.js",
   "bootstrap_custom.js.map": "/packs/js/bootstrap_custom-43522c29f73dc9f433d6.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-1bd25dc21ad4b74979a1.js"
+        "/packs/js/application-64476a50092970647dd6.js"
       ],
       "js.map": [
-        "/packs/js/application-1bd25dc21ad4b74979a1.js.map"
+        "/packs/js/application-64476a50092970647dd6.js.map"
       ]
     },
     "bootstrap_custom": {
@@ -29,6 +29,7 @@
       ]
     }
   },
+  "media/images/gray-dot.png": "/packs/media/images/gray-dot-24d3507d287cec19d66acb40e2ee7b3b.png",
   "venues.js": "/packs/js/venues-f50e6209ce22b5fbcc76.js",
   "venues.js.map": "/packs/js/venues-f50e6209ce22b5fbcc76.js.map"
 }
