@@ -142,7 +142,7 @@ infowindows = [];
             	position: new google.maps.LatLng(parseFloat(maps_data[i]['lat']), parseFloat(maps_data[i]['long'])),
             	map: map,
 					  	title: maps_data[i]['name'],
-							icon: "https://images-findavenue.s3-ap-southeast-2.amazonaws.com/green-dot.png"
+							icon: 'https://images-findavenue.s3-ap-southeast-2.amazonaws.com/green-dot.png'
         		});
 					  marker.addListener("click", function(mapsMouseEvent) {
              console.log(markers);
@@ -156,7 +156,7 @@ infowindows = [];
             	position: new google.maps.LatLng(parseFloat(maps_data[i]['lat']), parseFloat(maps_data[i]['long'])),
             	map: map,
 					  	title: maps_data[i]['name'],
-							icon: "https://images-findavenue.s3-ap-southeast-2.amazonaws.com/orange-dot.png"
+							icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
         		});
 					  marker.addListener("click", function(mapsMouseEvent) {
              console.log(markers);
