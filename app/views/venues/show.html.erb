@@ -1,8 +1,8 @@
 <%if current_user.company.percentage_full == 0%>
   <div class = "row space_avaliable-100 show-div" style="z-index:-1;" id="available" onclick="set_venue_status(0)">
-    <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
-        Register now for SMS Alerts.
+    <div style='margin:auto; text-align: center;'>
+      <h1 style="color: white; top:33vh; position: relative;">
+        There's plenty of room. Come on in!
       </h1>
     </div>
     <div style="bottom: 0; position: absolute; left:40vw;">
@@ -11,7 +11,7 @@
   </div>
   <div class = "row space_almost_out-100 hide-div" id="almost_out" onclick="set_venue_status(1)">
     <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
+      <h1 style="color: white;  top:33vh; position: relative;"">
         Walkin's & small groups welcome
       </h1>
     </div>
@@ -21,7 +21,7 @@
   </div>
   <div class = "row space_not_avaliable-100 hide-div" id="out" onclick="set_venue_status(2)">
     <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
+      <h1 style="color: white;  top:33vh; position: relative;"">
         FULL Register now for SMS alerts.
       </h1>
     </div>
@@ -33,8 +33,8 @@
 <%if current_user.company.percentage_full == 100%>
   <div class = "row space_avaliable-100 hide-div" id="available" onclick="set_venue_status(0)">
     <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
-        Register now for SMS Alerts.
+      <h1 style="color: white;  top:33vh; position: relative;"">
+        There's plenty of room. Come on in!
       </h1>
     </div>
     <div style="bottom: 0; position: absolute; left:40vw;">
@@ -43,7 +43,7 @@
   </div>
   <div class = "row space_almost_out-100 hide-div" id="almost_out" onclick="set_venue_status(1)">
     <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
+      <h1 style="color: white;  top:33vh; position: relative;"">
         Walkin's & small groups welcome
       </h1>
     </div>
@@ -53,7 +53,7 @@
   </div>
   <div class = "row space_not_avaliable-100 show-div" id="out" onclick="set_venue_status(2)">
     <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
+      <h1 style="color: white;  top:33vh; position: relative;"">
         FULL Register now for SMS alerts.
       </h1>
     </div>
@@ -65,8 +65,8 @@
 <%if current_user.company.percentage_full == 50%>
   <div class = "row space_avaliable-100 hide-div" id="available" onclick="set_venue_status(0)">
     <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
-        Register now for SMS Alerts.
+      <h1 style="color: white;   top:33vh; position: relative;"">
+        There's plenty of room. Come on in!
       </h1>
     </div>
     <div style="bottom: 0; position: absolute; left:40vw;">
@@ -75,7 +75,7 @@
   </div>
   <div class = "row space_almost_out-100 show-div" id="almost_out" onclick="set_venue_status(1)">
     <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
+      <h1 style="color: white;  top:33vh; position: relative;"">
         Walkin's & small groups welcome
       </h1>
     </div>
@@ -85,7 +85,7 @@
   </div>
   <div class = "row space_not_avaliable-100 hide-div" id="out" onclick="set_venue_status(2)">
     <div style='margin:auto;   text-align: center;'>
-      <h1 style="color: white;">
+      <h1 style="color: white;  top:33vh; position: relative;"">
         FULL Register now for SMS alerts.
       </h1>
     </div>
