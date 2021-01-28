@@ -15,7 +15,7 @@ class Patron < ApplicationRecord
       to = to_number
     end
     @company = self.company.name
-    @message = "Hi #{self.first_name} we currently have space at #{@company}. *This is not a booking & does not gaurantee entry."
+    @message = "Hi #{self.first_name} we currently have space at #{@company}. *This is not a booking & does not guarantee entry."
     begin
         @messages =  client.messages.create(
         from: from,
@@ -32,7 +32,7 @@ class Patron < ApplicationRecord
 
   def text_waitlist(current_user)
     @venue = current_user.company
-    @max_to_invite = (@venue.capacity.to_i - (@venue.capacity.to_i*(@venue.percentage_full/100)))
+    @max_to_invite = @venue.capacity.to_i
     @patrons = Patron.all.where(waitlist: true, company_id: @venue.id, created_at:  (Time.now - 3.hours)..Time.now).order(created_at: :desc).limit(@max_to_invite)
     @patrons.each do |p|
       if (@venue.capacity.to_i > (@venue.capacity.to_i*(@venue.percentage_full/100)))
