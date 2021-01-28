@@ -15,7 +15,7 @@ class Patron < ApplicationRecord
       to = to_number
     end
     @company = self.company.name
-    @message = "Hi #{self.first_name} your table is now ready at #{@company}. We will hold the table for 10 minutes."
+    @message = "Hi #{self.first_name} we currently have space at #{@company}. Note: this not a booking & does not gaurantee entry."
     begin
         @messages =  client.messages.create(
         from: from,
