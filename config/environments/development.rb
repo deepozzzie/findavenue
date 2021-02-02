@@ -9,6 +9,9 @@ Rails.application.configure do
   config.cache_classes = false
   config.hosts << "ec2-54-252-170-18.ap-southeast-2.compute.amazonaws.com"
   config.hosts << "demo.findavenue.io"
+  config.hosts << "findavenue.io"
+  config.hosts << "www.findavenue.io"
+
 
   # Do not eager load code on boot.
   config.eager_load = false
