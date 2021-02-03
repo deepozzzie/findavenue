@@ -7,13 +7,14 @@ class ContactUsMailer < ApplicationMailer
     @email = params[:email]
     @message = params[:message]
     @phone_number = params[:phone_number]
-    mail(to:"theeufj@gmail.com", subject: "contact us")
+    mail(to:"production@bake.agency", subject: "contact us")
   end
 
   def request_company(params)
     @first_name = params[:first_name]
     @company_name = Company.find_by(id: params[:company_id]).name
     @phone_number = params[:phone_number]
-    mail(to:"theeufj@gmail.com", subject: "Request Company")
+    mail(to:"production@bake.agency", subject: "Request Company")
   end
+  # production@bake.agency
 end
