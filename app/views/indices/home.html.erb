@@ -199,19 +199,19 @@ infowindows = [];
               console.log(infowindows);
 							// infowindow.open(map, marker);
 							if(maps_data[i]['color'] == 'red'){
-								infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('venue_list').showModal();  onmouseover = document.getElementById('company_id').value="+maps_data[i]['id']+"> Join Waitlist. </p>" )
+								infowindow.setContent(maps_data[i]["name"] + " | " + "<a style='color:blue;' href='http://maps.google.com/maps?q=" + encodeURIComponent( maps_data[i]["address"] ) + "' target='_blank'>"+  maps_data[i]["address"]  +  " </a> | <p class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=document.getElementById('venue_list').showModal();  onmouseover = document.getElementById('company_id').value="+maps_data[i]['id']+"> Join Waitlist. </p>" )
                   infowindows.push(infowindow);
 								}
                 if(maps_data[i]['color'] == 'gray'){
-                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='' style='font-weight:bold;, text-align: center;' onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> This venue is not active at this time. </p>  <a style='background:gray' href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'   target='_blank'> Covid Sign In! </p>" )
+                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='' style='font-weight:bold;, text-align: center;' onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> This venue is not active at this time. </p> | <a style='background:gray' href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'   target='_blank'> Covid Sign In! </p>" )
                     infowindows.push(infowindow);
                   }
                 if(maps_data[i]['color'] == 'green' || maps_data[i]['color'] == 'green'  ){
-                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <a href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'   target='_blank'> Covid Sign In! </p>" )
+                  infowindow.setContent(maps_data[i]["name"] + " | " + + "<a style='color:blue;' href='http://maps.google.com/maps?q=" + encodeURIComponent( maps_data[i]["address"] ) + "' target='_blank'>"+  maps_data[i]["address"]  +  " </a> | <a href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'   target='_blank'> Covid Sign In! </p>" )
                     infowindows.push(infowindow);
                   }
                   if(maps_data[i]['color'] == 'orange' || maps_data[i]['color'] == 'green'  ){
-                    infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <a href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'  target='_blank'> Covid Sign In! </p>" )
+                    infowindow.setContent(maps_data[i]["name"] + " | " + "<a style='color:blue;' href='http://maps.google.com/maps?q=" + encodeURIComponent( maps_data[i]["address"] ) + "' target='_blank'>"+  maps_data[i]["address"]  +  " </a> | <a href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'  target='_blank'> Covid Sign In! </p>" )
                       infowindows.push(infowindow);
                     }
 							infowindows.push(infowindow);
