@@ -1,3 +1,5 @@
+require 'net/http'
+require 'uri'
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
@@ -58,9 +60,11 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-
+    @data = return_all_details(company_params[:places_id])
     respond_to do |format|
       if @company.save
+        @company.update(rating: @data["result"]["rating"])
+        @company.update(phone_number: @data["result"]["formatted_phone_number"])
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
@@ -73,8 +77,11 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
+    @data = return_all_details(company_params[:places_id])
     respond_to do |format|
       if @company.update(company_params)
+        @company.update(rating: @data["result"]["rating"])
+        @company.update(phone_number: @data["result"]["formatted_phone_number"])
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @company }
       else
@@ -82,6 +89,12 @@ class CompaniesController < ApplicationController
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def return_all_details(places_id)
+      uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{places_id}&fields=name,rating,formatted_phone_number,opening_hours,formatted_address&key=AIzaSyD7Cpwya87bUmnIMkFc1penQMVhNkpUaaU")
+      response = Net::HTTP.get_response(uri)
+      @response = JSON(response.body)
   end
 
   # DELETE /companies/1
@@ -104,6 +117,6 @@ class CompaniesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def company_params
-      params.require(:company).permit(:name, :address, :lat, :lng, :phone_number, :link, :capacity)
+      params.require(:company).permit(:name, :address, :lat, :lng, :phone_number, :link, :capacity, :places_id)
     end
 end

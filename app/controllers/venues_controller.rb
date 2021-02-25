@@ -1,3 +1,5 @@
+require 'net/http'
+require 'uri'
 class VenuesController < ApplicationController
   before_action :authenticate_user!, except: [:return_all_venues]
 
@@ -65,30 +67,48 @@ class VenuesController < ApplicationController
     @venues = Company.all
 
     @userlist = @venues.map do |u|
-      link = u.link
-
-      @max_cap = u.capacity
-      @per_full = (u.percentage_full)
-      @percentage = @per_full
-      if @percentage == 100
-        @color = "red"
-      elsif @percentage == 50
-        @color = "orange"
+      if return_open(u.places_id) == true
+        link = u.link
+        @max_cap = u.capacity
+        @per_full = (u.percentage_full)
+        @percentage = @per_full
+        if @percentage == 100
+          @color = "red"
+        elsif @percentage == 50
+          @color = "orange"
+        else
+          @color = "green"
+        end
+        if u.is_active == false
+          @color = "gray"
+        end
+          { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
       else
-        @color = "green"
+          { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>"white", long: u.lng, lat: u.lat }
       end
-      if u.is_active == false
-        @color = "gray"
-      end
-
-      { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
     end
+
+
     @json = @userlist.to_json
     respond_to do |format|
       format.html { render json: @json, status: 200 }
       format.json {render json: @json, status: 200}
     end
-
-
   end
+
+  def return_open(places_id)
+    uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{places_id}&fields=name,rating,formatted_phone_number,opening_hours,formatted_address&key=AIzaSyD7Cpwya87bUmnIMkFc1penQMVhNkpUaaU")
+    response = Net::HTTP.get_response(uri)
+    @response = JSON(response.body)
+    if @response["status"] == "INVALID_REQUEST"
+      return false
+    else
+      if @response["result"]["opening_hours"]["open_now"] == true
+        return true
+      else
+        return false
+      end
+    end
+  end
+
 end

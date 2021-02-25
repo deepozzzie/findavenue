@@ -12,9 +12,15 @@ function initMap() {
 
 	$.ajax(settings).done(function (response) {
 		var maps_data = JSON.parse(response);
-		console.log(maps_data[0].lat);
-    console.log(maps_data[0].lat);
-		var myLatLng = {lat: parseFloat(maps_data[0].lat), lng: parseFloat(maps_data[0].long)};
+    var i = 0
+    while(maps_data[i] ==null)
+    {
+      i++;
+    }
+    console.log(maps_data[i]);
+		console.log(maps_data[i].lat);
+    console.log(maps_data[i].lat);
+		var myLatLng = {lat: parseFloat(maps_data[i].lat), lng: parseFloat(maps_data[i].long)};
     console.log(myLatLng);
 			var map = new google.maps.Map(document.getElementById('map_div'), {
 				zoom: 15,
@@ -126,7 +132,7 @@ markers = [];
 infowindows = [];
 		//all markers
 		//
-		    for (i = 0; i < maps_data.length; i++) {
+		    for (i = i; i < maps_data.length; i++) {
           console.log(maps_data);
 						var myLatLng = {lat: parseFloat(maps_data[i].lat), lng: parseFloat(maps_data[i].long)};
 					  const infowindow = new google.maps.InfoWindow({
@@ -194,6 +200,19 @@ infowindows = [];
               infowindow.open(map, mark);
             });
           }
+          else if(maps_data[i]['color'] == "white"){
+             marker = new google.maps.Marker({
+              position: new google.maps.LatLng(parseFloat(maps_data[i]['lat']), parseFloat(maps_data[i]['long'])),
+              map: map,
+              title: maps_data[i]['name'],
+              icon: "https://images-findavenue.s3-ap-southeast-2.amazonaws.com/white-dot.png"
+            });
+            marker.addListener("click", function(mapsMouseEvent) {
+              mark = returnMarker(markers, mapsMouseEvent.latLng);
+              closeInfowindows(infowindows);
+              infowindow.open(map, mark);
+            });
+          }
 							markers.push(marker);
               console.log(markers);
               console.log(infowindows);
@@ -210,6 +229,10 @@ infowindows = [];
                   infowindow.setContent(maps_data[i]["name"] + " | " + + "<a style='color:blue;' href='http://maps.google.com/maps?q=" + encodeURIComponent( maps_data[i]["address"] ) + "' target='_blank'>"+  maps_data[i]["address"]  +  " </a> | <a href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'   target='_blank'> Covid Sign In! </p>" )
                     infowindows.push(infowindow);
                   }
+                  if(maps_data[i]['color'] == 'white' ){
+                    infowindow.setContent("Closed" )
+                      infowindows.push(infowindow);
+                    }
                   if(maps_data[i]['color'] == 'orange' || maps_data[i]['color'] == 'green'  ){
                     infowindow.setContent(maps_data[i]["name"] + " | " + "<a style='color:blue;' href='http://maps.google.com/maps?q=" + encodeURIComponent( maps_data[i]["address"] ) + "' target='_blank'>"+  maps_data[i]["address"]  +  " </a> | <a href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'  target='_blank'> Covid Sign In! </p>" )
                       infowindows.push(infowindow);
