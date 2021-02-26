@@ -230,7 +230,7 @@ infowindows = [];
                     infowindows.push(infowindow);
                   }
                   if(maps_data[i]['color'] == 'white' ){
-                    infowindow.setContent("Closed" )
+                    infowindow.setContent(maps_data[i]["name"] + " | Closed" )
                       infowindows.push(infowindow);
                     }
                   if(maps_data[i]['color'] == 'orange' || maps_data[i]['color'] == 'green'  ){

@@ -100,10 +100,11 @@ class VenuesController < ApplicationController
     uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{places_id}&fields=name,rating,formatted_phone_number,opening_hours,formatted_address&key=AIzaSyD7Cpwya87bUmnIMkFc1penQMVhNkpUaaU")
     response = Net::HTTP.get_response(uri)
     @response = JSON(response.body)
+
     if @response["status"] == "INVALID_REQUEST" or @response.empty?
       return false
     else
-      if @response["result"]["opening_hours"]["open_now"] == true
+      if @response["result"]["opening_hours"].nil? == false and @response["result"]["opening_hours"]["open_now"] == true
         return true
       else
         return false
