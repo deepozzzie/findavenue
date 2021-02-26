@@ -84,7 +84,12 @@ class VenuesController < ApplicationController
         end
           { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
       else
-          { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>"white", long: u.lng, lat: u.lat }
+        if u.is_active == false
+          @color = "gray"
+        else
+          @color = "white"
+        end
+          { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
       end
     end
 
