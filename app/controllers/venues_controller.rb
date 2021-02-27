@@ -71,7 +71,7 @@ class VenuesController < ApplicationController
         print u.updated_at
       end
     end
-    @venues = Company.all.where(is_open: true)
+    @venues = Company.all
     @userlist = @venues.map do |u|
       if u.is_open == true
         link = u.link
@@ -113,7 +113,7 @@ class VenuesController < ApplicationController
     @response = JSON(response.body)
 
     if @response["status"] == "INVALID_REQUEST" or @response.empty?
-      
+
       @company = Company.find_by(places_id: places_id)
       @company.update(is_open: false, update_number: @company.update_number+1);
       return false
