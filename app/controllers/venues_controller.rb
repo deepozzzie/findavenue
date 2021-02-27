@@ -64,7 +64,7 @@ class VenuesController < ApplicationController
 
   def return_all_venues
 
-    @venues = Company.where.not('updated_at > ?', 1.hours.ago)
+    @venues = Company.where.not('updated_at > ?', 30.minutes.ago)
     @venues.each do |u|
       if u.places_id != nil
         return_open(u.places_id)
