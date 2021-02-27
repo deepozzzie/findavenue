@@ -64,10 +64,16 @@ class VenuesController < ApplicationController
 
   def return_all_venues
 
-    @venues = Company.all
-
+    @venues = Company.where.not('updated_at > ?', 1.hours.ago)
+    @venues.each do |u|
+      if u.places_id != nil
+        return_open(u.places_id)
+        print u.updated_at
+      end
+    end
+    @venues = Company.all.where(is_open: true)
     @userlist = @venues.map do |u|
-      if return_open(u.places_id) == true
+      if u.is_open == true
         link = u.link
         @max_cap = u.capacity
         @per_full = (u.percentage_full)
@@ -107,12 +113,18 @@ class VenuesController < ApplicationController
     @response = JSON(response.body)
 
     if @response["status"] == "INVALID_REQUEST" or @response.empty?
+      
+      @company = Company.find_by(places_id: places_id)
+      @company.update(is_open: false, update_number: @company.update_number+1);
       return false
     else
       if @response["result"]["opening_hours"].nil? == false and @response["result"]["opening_hours"]["open_now"] == true
-        return true
+
+        @company = Company.find_by(places_id: places_id)
+        @company.update(is_open: true, update_number: @company.update_number+1);
       else
-        return false
+        @company = Company.find_by(places_id: places_id)
+        @company.update(is_open: false, update_number: @company.update_number+1);
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_052157) do
+ActiveRecord::Schema.define(version: 2021_02_27_034536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_02_25_052157) do
     t.boolean "is_active", default: false
     t.string "places_id"
     t.string "rating"
+    t.boolean "is_open"
+    t.integer "update_number", default: 0
   end
 
   create_table "indices", force: :cascade do |t|
