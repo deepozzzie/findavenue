@@ -99,6 +99,7 @@ class VenuesController < ApplicationController
         end
           { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
       end
+        { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
     end
 
 
