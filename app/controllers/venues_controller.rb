@@ -92,6 +92,7 @@ class VenuesController < ApplicationController
       else
         if u.is_active == false
           @color = "gray"
+            { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
         else
           @color = "white"
         end
