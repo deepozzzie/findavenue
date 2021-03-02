@@ -222,7 +222,7 @@ infowindows = [];
                   infowindows.push(infowindow);
 								}
                 if(maps_data[i]['color'] == 'gray'){
-                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='' style='font-weight:bold;, text-align: center;' onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> Live capacity updates not active </p> | <a style='background:gray' href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'   target='_blank'> Covid Sign In! </p>" )
+                  infowindow.setContent(maps_data[i]["name"] + " | " + maps_data[i]["address"] + " | <p class='' style='font-weight:bold;, text-align: center;' onmouseover = document.getElementById('company_id_request').value="+maps_data[i]['id']+"> This venue is not active at this time. </p> | <a style='background:gray' href="+maps_data[i]['link']+" class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800'   target='_blank'> Covid Sign In! </p>" )
                     infowindows.push(infowindow);
                   }
                 if(maps_data[i]['color'] == 'green' || maps_data[i]['color'] == 'green'  ){
