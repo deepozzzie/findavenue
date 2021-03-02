@@ -87,20 +87,20 @@ class VenuesController < ApplicationController
         end
         if u.is_active == false
           @color = "gray"
-            { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
+            { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => u.link, :color=>@color, long: u.lng, lat: u.lat }
         end
-          { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
+          { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => u.link, :color=>@color, long: u.lng, lat: u.lat }
       else
         if u.is_active == false
           @color = "gray"
-            { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
+            { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => u.link, :color=>@color, long: u.lng, lat: u.lat }
         else
           @color = "white"
         end
-          { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
+          { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => u.link, :color=>@color, long: u.lng, lat: u.lat }
       end
-        { :id=>u.id, :name => u.name, :phone_number => u.phone_number, :address => u.address, :capacity => @percentage, :link => link, :color=>@color, long: u.lng, lat: u.lat }
     end
+
 
 
     @json = @userlist.to_json
