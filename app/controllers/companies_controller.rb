@@ -92,7 +92,7 @@ class CompaniesController < ApplicationController
   end
 
   def return_all_details(places_id)
-      uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{places_id}&fields=name,rating,formatted_phone_number,opening_hours,formatted_address&key=AIzaSyD7Cpwya87bUmnIMkFc1penQMVhNkpUaaU")
+      uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{places_id}&fields=name,rating,formatted_phone_number,opening_hours,formatted_address&key=AIzaSyDHvVaqvV6oKDo7E30tlWmI7D28jTU3EGQ")
       response = Net::HTTP.get_response(uri)
       @response = JSON(response.body)
   end
