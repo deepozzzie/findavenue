@@ -66,11 +66,11 @@ class VenuesController < ApplicationController
 
     @venues = Company.all
     @venues.each do |u|
-      # return_open_places(u)
-      if u.places_id != nil
-        return_open(u.places_id)
-        print u.updated_at
-      end
+      return_open_places(u)
+      # if u.places_id != nil
+      #   return_open(u.places_id)
+      #   print u.updated_at
+      # end
     end
     @venues = Company.all
     @userlist = @venues.map do |u|
@@ -154,7 +154,8 @@ class VenuesController < ApplicationController
       company.update(is_open: true)
       return true
     elsif company.thursday_open.nil? == false && company.thursday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.thursday_open && Time.now.strftime("%H%M").to_i < company.thursday_closed
-      logger.debug ("true")
+      logger.debug company.name
+      logger.debug ("open")
       company.update(is_open: true)
       return true
     elsif company.friday_open.nil? == false && company.friday_closed.nil? == false  &&  Time.now.strftime("%H%M").to_i > company.friday_open && Time.now.strftime("%H%M").to_i < company.friday_closed
@@ -170,7 +171,8 @@ class VenuesController < ApplicationController
       company.update(is_open: true)
       return true
     else
-      logger.debug ('false')
+      logger.debug company.name
+      logger.debug ('closed')
       company.update(is_open: false)
       return false
     end
