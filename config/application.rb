@@ -19,6 +19,7 @@ module Findavenue
     # in config/environments, which are processed later.
     #
     config.time_zone = "Sydney"
+    config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
