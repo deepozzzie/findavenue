@@ -170,6 +170,7 @@ class VenuesController < ApplicationController
       company.update(is_open: true)
       return true
     else
+      logger.debug ("new company")
       logger.debug company.name
       logger.debug ('closed')
       logger.debug company.thursday_open.nil? == false
@@ -179,7 +180,7 @@ class VenuesController < ApplicationController
       logger.debug Time.now.strftime("%H%M").to_i != 2359
       logger.debug company.thursday_open
       logger.debug company.thursday_closed
-
+      logger.debug ("end company")
       company.update(is_open: false)
       return false
     end
