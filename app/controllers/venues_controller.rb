@@ -66,11 +66,11 @@ class VenuesController < ApplicationController
 
     @venues = Company.all
     @venues.each do |u|
-      #return_open_places(u)
-      if u.places_id != nil
-        return_open(u.places_id)
-        print u.updated_at
-      end
+       return_open_places(u)
+      # if u.places_id != nil
+      #   return_open(u.places_id)
+      #   print u.updated_at
+      # end
     end
     @venues = Company.all
     @userlist = @venues.map do |u|
@@ -119,53 +119,93 @@ class VenuesController < ApplicationController
     @response = JSON(response.body)
     logger.debug @response
     logger.debug places_id
-    if @response["status"] == "INVALID_REQUEST" or @response.empty?
+    if @response["status"] == "INVALID_REQUEST" or @response.empty? or @response['result']['opening_hours'].nil? == true
       @company = Company.find_by(places_id: places_id)
       @company.update(is_open: false, update_number: @company.update_number+1);
       return false
     else
-      if @response["result"]["opening_hours"].nil? == false and @response["result"]["opening_hours"]["open_now"] == true
-        @company = Company.find_by(places_id: places_id)
-        @company.update(is_open: true, update_number: @company.update_number+1);
+      if @response['result']['opening_hours']['periods'][0].nil? == true
+        @company = Company.find_by(places_id: places_id ).update(sunday_closed: 0)
+        @company = Company.find_by(places_id: places_id ).update(sunday_open: 0)
       else
-        @company = Company.find_by(places_id: places_id)
-        @company.update(is_open: false, update_number: @company.update_number+1);
+        @company = Company.find_by(places_id: places_id ).update(sunday_closed: @response['result']['opening_hours']['periods'][0]['close']['time'].to_i)
+        @company = Company.find_by(places_id: places_id ).update(sunday_open: @response['result']['opening_hours']['periods'][0]['open']['time'].to_i)
       end
-      if @response["result"]["opening_hours"].nil? == true
-        @company = Company.find_by(places_id: places_id)
-        @company.update(is_open: true, update_number: @company.update_number+1);
+      if @response['result']['opening_hours']['periods'][1].nil? == true
+        @company = Company.find_by(places_id: places_id ).update(monday_closed: 0)
+        @company = Company.find_by(places_id: places_id ).update(monday_open: 0)
+      else
+        @company = Company.find_by(places_id: places_id ).update(monday_closed: @response['result']['opening_hours']['periods'][1]['close']['time'].to_i)
+        @company = Company.find_by(places_id: places_id ).update(monday_open: @response['result']['opening_hours']['periods'][1]['open']['time'].to_i)
       end
+      if @response['result']['opening_hours']['periods'][2].nil? == true
+        @company = Company.find_by(places_id: places_id ).update(tuesday_closed: 0)
+        @company = Company.find_by(places_id: places_id ).update(tuesday_open: 0)
+      else
+        @company = Company.find_by(places_id: places_id ).update(tuesday_closed: @response['result']['opening_hours']['periods'][2]['close']['time'].to_i)
+        @company = Company.find_by(places_id: places_id ).update(tuesday_open: @response['result']['opening_hours']['periods'][2]['open']['time'].to_i)
+      end
+      if @response['result']['opening_hours']['periods'][3].nil? == true
+        @company = Company.find_by(places_id: places_id ).update(wednesday_closed: 0)
+        @company = Company.find_by(places_id: places_id ).update(wednesday_open: 0)
+      else
+        @company = Company.find_by(places_id: places_id ).update(wednesday_closed: @response['result']['opening_hours']['periods'][3]['close']['time'].to_i)
+        @company = Company.find_by(places_id: places_id ).update(wednesday_open: @response['result']['opening_hours']['periods'][3]['open']['time'].to_i)
+      end
+      if @response['result']['opening_hours']['periods'][4].nil? == true
+        @company = Company.find_by(places_id: places_id ).update(thursday_closed: 0)
+        @company = Company.find_by(places_id: places_id ).update(thursday_open: 0)
+      else
+        @company = Company.find_by(places_id: places_id ).update(thursday_closed: @response['result']['opening_hours']['periods'][4]['close']['time'].to_i)
+        @company = Company.find_by(places_id: places_id ).update(thursday_open: @response['result']['opening_hours']['periods'][4]['open']['time'].to_i)
+      end
+      if @response['result']['opening_hours']['periods'][5].nil? == true
+        @company = Company.find_by(places_id: places_id ).update(friday_closed: 0)
+        @company = Company.find_by(places_id: places_id ).update(friday_open: 0)
+      else
+        @company = Company.find_by(places_id: places_id ).update(friday_closed: @response['result']['opening_hours']['periods'][5]['close']['time'].to_i)
+        @company = Company.find_by(places_id: places_id ).update(friday_open: @response['result']['opening_hours']['periods'][5]['open']['time'].to_i)
+      end
+      if @response['result']['opening_hours']['periods'][6].nil? == true
+        @company = Company.find_by(places_id: places_id ).update(saturday_closed: 0)
+        @company = Company.find_by(places_id: places_id ).update(saturday_open: 0)
+      else
+        @company = Company.find_by(places_id: places_id ).update(saturday_closed: @response['result']['opening_hours']['periods'][6]['close']['time'].to_i)
+        @company = Company.find_by(places_id: places_id ).update(saturday_open: @response['result']['opening_hours']['periods'][5]['open']['time'].to_i)
+      end
+
+
     end
   end
 
   def return_open_places(company)
     # byebug
     logger.debug company.name
-    if company.monday_open.nil? == false && company.monday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.monday_open && Time.now.strftime("%H%M").to_i < company.monday_closed
+    if company.monday_open.nil? == false && company.monday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.monday_open.to_i && Time.now.strftime("%H%M").to_i < company.monday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.tuesday_open.nil? == false && company.tuesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.tuesday_open && Time.now.strftime("%H%M").to_i < company.tuesday_closed
+    elsif company.tuesday_open.nil? == false && company.tuesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.tuesday_open.to_i && Time.now.strftime("%H%M").to_i < company.tuesday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.wednesday_open.nil? == false && company.wednesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.wednesday_open && Time.now.strftime("%H%M").to_i < company.wednesday_closed
+    elsif company.wednesday_open.nil? == false && company.wednesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.wednesday_open.to_i && Time.now.strftime("%H%M").to_i < company.wednesday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.thursday_open.nil? == false && company.thursday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.thursday_open && Time.now.strftime("%H%M").to_i < company.thursday_closed
+    elsif company.thursday_open.nil? == false && company.thursday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.thursday_open.to_i && Time.now.strftime("%H%M").to_i < company.thursday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.friday_open.nil? == false && company.friday_closed.nil? == false  &&  Time.now.strftime("%H%M").to_i > company.friday_open && Time.now.strftime("%H%M").to_i < company.friday_closed
+    elsif company.friday_open.nil? == false && company.friday_closed.nil? == false  &&  Time.now.strftime("%H%M").to_i > company.friday_open.to_i && Time.now.strftime("%H%M").to_i < company.friday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.saturday_open.nil? == false && company.saturday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.saturday_open && Time.now.strftime("%H%M").to_i < company.saturday_closed
+    elsif company.saturday_open.nil? == false && company.saturday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.saturday_open.to_i && Time.now.strftime("%H%M").to_i < company.saturday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.sunday_open.nil? == false && company.sunday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.sunday_open && Time.now.strftime("%H%M").to_i < company.sunday_closed
+    elsif company.sunday_open.nil? == false && company.sunday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.sunday_open.to_i && Time.now.strftime("%H%M").to_i < company.sunday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
