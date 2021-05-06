@@ -67,6 +67,10 @@ class VenuesController < ApplicationController
     @venues = Company.all
     @venues.each do |u|
       return_open_places(u)
+      # if u.places_id != nil
+      #   return_open(u.places_id)
+      #   print u.updated_at
+      # end
     end
     @venues = Company.all
     @userlist = @venues.map do |u|
