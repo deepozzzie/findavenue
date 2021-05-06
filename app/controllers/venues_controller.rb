@@ -64,7 +64,7 @@ class VenuesController < ApplicationController
 
   def return_all_venues
 
-    @venues = Company.where.not('updated_at > ?', 30.minutes.ago)
+    @venues = Company.where.not('updated_at > ?', 60.minutes.ago)
     @venues.each do |u|
       if u.places_id != nil
         return_open(u.places_id)
@@ -111,11 +111,12 @@ class VenuesController < ApplicationController
   end
 
   def return_open(places_id)
+    logger.debug places_id
     uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{places_id}&fields=name,rating,formatted_phone_number,opening_hours,formatted_address&key=AIzaSyDHvVaqvV6oKDo7E30tlWmI7D28jTU3EGQ")
     response = Net::HTTP.get_response(uri)
     @response = JSON(response.body)
-    print @response
-
+    logger.debug @response
+    logger.debug places_id
     if @response["status"] == "INVALID_REQUEST" or @response.empty?
       @company = Company.find_by(places_id: places_id)
       @company.update(is_open: false, update_number: @company.update_number+1);
