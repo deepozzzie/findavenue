@@ -140,38 +140,46 @@ class VenuesController < ApplicationController
 
   def return_open_places(company)
     # byebug
-    if company.monday_open.nil? == false && company.monday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.monday_open.to_i && Time.now.strftime("%H%M").to_i < company.monday_closed.to_i  && Time.now.strftime("%H%M").to_i < 2359
+    if company.monday_open.nil? == false && company.monday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.monday_open.to_i && Time.now.strftime("%H%M").to_i < company.monday_closed.to_i  && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.tuesday_open.nil? == false && company.tuesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.tuesday_open.to_i && Time.now.strftime("%H%M").to_i < company.tuesday_closed.to_i && Time.now.strftime("%H%M").to_i < 2359
+    elsif company.tuesday_open.nil? == false && company.tuesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.tuesday_open.to_i && Time.now.strftime("%H%M").to_i < company.tuesday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.wednesday_open.nil? == false && company.wednesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.wednesday_open.to_i && Time.now.strftime("%H%M").to_i < company.wednesday_closed.to_i && Time.now.strftime("%H%M").to_i < 2359
+    elsif company.wednesday_open.nil? == false && company.wednesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.wednesday_open.to_i && Time.now.strftime("%H%M").to_i < company.wednesday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.thursday_open.nil? == false && company.thursday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.thursday_open.to_i && Time.now.strftime("%H%M").to_i < company.thursday_closed.to_i && Time.now.strftime("%H%M").to_i < 2359
+    elsif company.thursday_open.nil? == false && company.thursday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.thursday_open.to_i && Time.now.strftime("%H%M").to_i < company.thursday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug company.name
       logger.debug ("open")
       company.update(is_open: true)
       return true
-    elsif company.friday_open.nil? == false && company.friday_closed.nil? == false  &&  Time.now.strftime("%H%M").to_i > company.friday_open.to_i && Time.now.strftime("%H%M").to_i < company.friday_closed.to_i && Time.now.strftime("%H%M").to_i < 2359
+    elsif company.friday_open.nil? == false && company.friday_closed.nil? == false  &&  Time.now.strftime("%H%M").to_i > company.friday_open.to_i && Time.now.strftime("%H%M").to_i < company.friday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.saturday_open.nil? == false && company.saturday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.saturday_open.to_i && Time.now.strftime("%H%M").to_i < company.saturday_closed.to_i && Time.now.strftime("%H%M").to_i < 2359
+    elsif company.saturday_open.nil? == false && company.saturday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.saturday_open.to_i && Time.now.strftime("%H%M").to_i < company.saturday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
-    elsif company.sunday_open.nil? == false && company.sunday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.sunday_open.to_i.to_i && Time.now.strftime("%H%M").to_i < company.sunday_closed.to_i && Time.now.strftime("%H%M").to_i < 2359
+    elsif company.sunday_open.nil? == false && company.sunday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.sunday_open.to_i.to_i && Time.now.strftime("%H%M").to_i < company.sunday_closed.to_i && Time.now.strftime("%H%M").to_i != 2359
       logger.debug ("true")
       company.update(is_open: true)
       return true
     else
       logger.debug company.name
       logger.debug ('closed')
+      logger.debug company.thursday_open.nil? == false
+      logger.debug company.thursday_closed.nil? == false
+      logger.debug Time.now.strftime("%H%M").to_i > company.thursday_open.to_i
+      logger.debug Time.now.strftime("%H%M").to_i < company.thursday_closed.to_i
+      logger.debug Time.now.strftime("%H%M").to_i != 2359
+      logger.debug company.thursday_open
+      logger.debug company.thursday_closed
+
       company.update(is_open: false)
       return false
     end
