@@ -82,10 +82,128 @@
 
       <%= f.label :places_id, class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
-        <%= f.text_field :places_id, class: "form-control" %>
+        <%= f.text_field :places_id, class: "form-control", onchange: "populate_close_times(ChIJ21jHvkCuEmsR9E21XUGOtCE)"%>
       </div>
 
   </div>
+  <!-- Monday -->
+  <div class="form-group">
+
+      <%= f.label :monday_open, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :monday_open, class: "form-control" %>
+      </div>
+
+  </div>
+  <div class="form-group">
+
+      <%= f.label :monday_closed, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :monday_closed, class: "form-control" %>
+      </div>
+
+  </div>
+<!-- tuesday -->
+  <div class="form-group">
+
+      <%= f.label :tuesday_open, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :tuesday_open, class: "form-control" %>
+      </div>
+
+  </div>
+  <div class="form-group">
+
+      <%= f.label :tuesday_closed, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :tuesday_closed, class: "form-control" %>
+      </div>
+
+  </div>
+  <!-- wednesday -->
+    <div class="form-group">
+
+        <%= f.label :wednesday_open, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :wednesday_open, class: "form-control" %>
+        </div>
+
+    </div>
+    <div class="form-group">
+
+        <%= f.label :wednesday_closed, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :wednesday_closed, class: "form-control" %>
+        </div>
+
+    </div>
+    <!-- Thursday -->
+      <div class="form-group">
+
+          <%= f.label :thursday_open, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :thursday_open, class: "form-control" %>
+          </div>
+
+      </div>
+      <div class="form-group">
+
+          <%= f.label :thursday_closed, class: "col-sm-2 control-label" %>
+          <div class="col-sm-10">
+            <%= f.text_field :thursday_closed, class: "form-control" %>
+          </div>
+
+      </div>
+      <!-- Friday -->
+        <div class="form-group">
+
+            <%= f.label :friday_open, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.text_field :friday_open, class: "form-control" %>
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <%= f.label :friday_closed, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.text_field :friday_closed, class: "form-control" %>
+            </div>
+
+        </div>
+        <!-- saturday -->
+          <div class="form-group">
+
+              <%= f.label :saturday_open, class: "col-sm-2 control-label" %>
+              <div class="col-sm-10">
+                <%= f.text_field :saturday_open, class: "form-control" %>
+              </div>
+
+          </div>
+          <div class="form-group">
+
+              <%= f.label :saturday_closed, class: "col-sm-2 control-label" %>
+              <div class="col-sm-10">
+                <%= f.text_field :saturday_closed, class: "form-control" %>
+              </div>
+
+          </div>
+          <!-- Sunday -->
+            <div class="form-group">
+
+                <%= f.label :sunday_open, class: "col-sm-2 control-label" %>
+                <div class="col-sm-10">
+                  <%= f.text_field :sunday_open, class: "form-control" %>
+                </div>
+
+            </div>
+            <div class="form-group">
+
+                <%= f.label :sunday_closed, class: "col-sm-2 control-label" %>
+                <div class="col-sm-10">
+                  <%= f.text_field :sunday_closed, class: "form-control" %>
+                </div>
+            </div>
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -175,4 +293,5 @@ function initAutocomplete() {
     map.fitBounds(bounds);
   });
 }
+
   </script>

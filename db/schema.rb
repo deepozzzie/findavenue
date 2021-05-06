@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_27_034536) do
+ActiveRecord::Schema.define(version: 2021_05_06_012015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(version: 2021_02_27_034536) do
     t.string "rating"
     t.boolean "is_open"
     t.integer "update_number", default: 0
+    t.integer "monday_open"
+    t.integer "monday_closed"
+    t.integer "tuesday_open"
+    t.integer "tuesday_closed"
+    t.integer "wednesday_open"
+    t.integer "wednesday_closed"
+    t.integer "thursday_open"
+    t.integer "thursday_closed"
+    t.integer "friday_open"
+    t.integer "friday_closed"
+    t.integer "saturday_open"
+    t.integer "saturday_closed"
+    t.integer "sunday_open"
+    t.integer "sunday_closed"
   end
 
   create_table "indices", force: :cascade do |t|

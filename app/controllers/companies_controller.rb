@@ -117,6 +117,6 @@ class CompaniesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def company_params
-      params.require(:company).permit(:name, :address, :lat, :lng, :phone_number, :link, :capacity, :places_id)
+      params.require(:company).permit(:monday_open, :monday_closed, :tuesday_open, :tuesday_closed, :wednesday_open, :wednesday_closed, :thursday_open, :thursday_closed, :friday_open, :friday_closed, :saturday_open, :saturday_closed, :sunday_open, :sunday_closed, :name, :address, :lat, :lng, :phone_number, :link, :capacity, :places_id)
     end
 end

@@ -64,8 +64,9 @@ class VenuesController < ApplicationController
 
   def return_all_venues
 
-    @venues = Company.where.not('updated_at > ?', 60.minutes.ago)
+    @venues = Company.all
     @venues.each do |u|
+      #return_open_places(u)
       if u.places_id != nil
         return_open(u.places_id)
         print u.updated_at
@@ -74,6 +75,7 @@ class VenuesController < ApplicationController
     @venues = Company.all
     @userlist = @venues.map do |u|
       if u.is_open == true
+        logger.debug u.name
         link = u.link
         @max_cap = u.capacity
         @per_full = (u.percentage_full)
@@ -136,4 +138,41 @@ class VenuesController < ApplicationController
     end
   end
 
+  def return_open_places(company)
+    # byebug
+    logger.debug company.name
+    if company.monday_open.nil? == false && company.monday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.monday_open && Time.now.strftime("%H%M").to_i < company.monday_closed
+      logger.debug ("true")
+      company.update(is_open: true)
+      return true
+    elsif company.tuesday_open.nil? == false && company.tuesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.tuesday_open && Time.now.strftime("%H%M").to_i < company.tuesday_closed
+      logger.debug ("true")
+      company.update(is_open: true)
+      return true
+    elsif company.wednesday_open.nil? == false && company.wednesday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.wednesday_open && Time.now.strftime("%H%M").to_i < company.wednesday_closed
+      logger.debug ("true")
+      company.update(is_open: true)
+      return true
+    elsif company.thursday_open.nil? == false && company.thursday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.thursday_open && Time.now.strftime("%H%M").to_i < company.thursday_closed
+      logger.debug ("true")
+      company.update(is_open: true)
+      return true
+    elsif company.friday_open.nil? == false && company.friday_closed.nil? == false  &&  Time.now.strftime("%H%M").to_i > company.friday_open && Time.now.strftime("%H%M").to_i < company.friday_closed
+      logger.debug ("true")
+      company.update(is_open: true)
+      return true
+    elsif company.saturday_open.nil? == false && company.saturday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.saturday_open && Time.now.strftime("%H%M").to_i < company.saturday_closed
+      logger.debug ("true")
+      company.update(is_open: true)
+      return true
+    elsif company.sunday_open.nil? == false && company.sunday_closed.nil? == false  && Time.now.strftime("%H%M").to_i > company.sunday_open && Time.now.strftime("%H%M").to_i < company.sunday_closed
+      logger.debug ("true")
+      company.update(is_open: true)
+      return true
+    else
+      logger.debug ('false')
+      company.update(is_open: false)
+      return false
+    end
+  end
 end
