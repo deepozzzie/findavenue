@@ -112,71 +112,71 @@ class VenuesController < ApplicationController
     end
   end
 
-  def return_open(places_id)
-    logger.debug places_id
-    uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{places_id}&fields=name,rating,formatted_phone_number,opening_hours,formatted_address&key=AIzaSyDHvVaqvV6oKDo7E30tlWmI7D28jTU3EGQ")
-    response = Net::HTTP.get_response(uri)
-    @response = JSON(response.body)
-    logger.debug @response
-    logger.debug places_id
-    if @response["status"] == "INVALID_REQUEST" or @response.empty?
-      @company = Company.find_by(places_id: places_id)
-      @company.update(is_open: false, update_number: @company.update_number+1);
-      return false
-    else
-      if @response@response['result']['opening_hours']['periods'][0].nil? == true
-        @company = Company.find_by(places_id: places_id ).update(sunday_closed: 0)
-        @company = Company.find_by(places_id: places_id ).update(sunday_open: 0)
-      else
-        @company = Company.find_by(places_id: places_id ).update(sunday_closed: @response['result']['opening_hours']['periods'][0]['close']['time'])
-        @company = Company.find_by(places_id: places_id ).update(sunday_open: @response['result']['opening_hours']['periods'][0]['open']['time'])
-      end
-      if @response@response['result']['opening_hours']['periods'][1].nil? == true
-        @company = Company.find_by(places_id: places_id ).update(monday_closed: 0)
-        @company = Company.find_by(places_id: places_id ).update(monday_open: 0)
-      else
-        @company = Company.find_by(places_id: places_id ).update(monday_closed: @response['result']['opening_hours']['periods'][1]['close']['time'])
-        @company = Company.find_by(places_id: places_id ).update(monday_open: @response['result']['opening_hours']['periods'][1]['open']['time'])
-      end
-      if @response@response['result']['opening_hours']['periods'][2].nil? == true
-        @company = Company.find_by(places_id: places_id ).update(tuesday_closed: 0)
-        @company = Company.find_by(places_id: places_id ).update(tuesday_open: 0)
-      else
-        @company = Company.find_by(places_id: places_id ).update(tuesday_closed: @response['result']['opening_hours']['periods'][2]['close']['time'])
-        @company = Company.find_by(places_id: places_id ).update(tuesday_open: @response['result']['opening_hours']['periods'][2]['open']['time'])
-      end
-      if @response@response['result']['opening_hours']['periods'][3].nil? == true
-        @company = Company.find_by(places_id: places_id ).update(wednesday_closed: 0)
-        @company = Company.find_by(places_id: places_id ).update(wednesday_open: 0)
-      else
-        @company = Company.find_by(places_id: places_id ).update(wednesday_closed: @response['result']['opening_hours']['periods'][3]['close']['time'])
-        @company = Company.find_by(places_id: places_id ).update(wednesday_open: @response['result']['opening_hours']['periods'][3]['open']['time'])
-      end
-      if @response@response['result']['opening_hours']['periods'][4].nil? == true
-        @company = Company.find_by(places_id: places_id ).update(thursday_closed: 0)
-        @company = Company.find_by(places_id: places_id ).update(thursday_open: 0)
-      else
-        @company = Company.find_by(places_id: places_id ).update(thursday_closed: @response['result']['opening_hours']['periods'][4]['close']['time'])
-        @company = Company.find_by(places_id: places_id ).update(thursday_open: @response['result']['opening_hours']['periods'][4]['open']['time'])
-      end
-      if @response@response['result']['opening_hours']['periods'][5].nil? == true
-        @company = Company.find_by(places_id: places_id ).update(friday_closed: 0)
-        @company = Company.find_by(places_id: places_id ).update(friday_open: 0)
-      else
-        @company = Company.find_by(places_id: places_id ).update(friday_closed: @response['result']['opening_hours']['periods'][5]['close']['time'])
-        @company = Company.find_by(places_id: places_id ).update(friday_open: @response['result']['opening_hours']['periods'][5]['open']['time'])
-      end
-      if @response@response['result']['opening_hours']['periods'][6].nil? == true
-        @company = Company.find_by(places_id: places_id ).update(saturday_closed: 0)
-        @company = Company.find_by(places_id: places_id ).update(saturday_open: 0)
-      else
-        @company = Company.find_by(places_id: places_id ).update(saturday_closed: @response['result']['opening_hours']['periods'][6]['close']['time'])
-        @company = Company.find_by(places_id: places_id ).update(saturday_open: @response['result']['opening_hours']['periods'][5]['open']['time'])
-      end
-
-
-    end
-  end
+  # def return_open(places_id)
+  #   logger.debug places_id
+  #   uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{places_id}&fields=name,rating,formatted_phone_number,opening_hours,formatted_address&key=AIzaSyDHvVaqvV6oKDo7E30tlWmI7D28jTU3EGQ")
+  #   response = Net::HTTP.get_response(uri)
+  #   @response = JSON(response.body)
+  #   logger.debug @response
+  #   logger.debug places_id
+  #   if @response["status"] == "INVALID_REQUEST" or @response.empty?
+  #     @company = Company.find_by(places_id: places_id)
+  #     @company.update(is_open: false, update_number: @company.update_number+1);
+  #     return false
+  #   else
+  #     if @response@response['result']['opening_hours']['periods'][0].nil? == true
+  #       @company = Company.find_by(places_id: places_id ).update(sunday_closed: 0)
+  #       @company = Company.find_by(places_id: places_id ).update(sunday_open: 0)
+  #     else
+  #       @company = Company.find_by(places_id: places_id ).update(sunday_closed: @response['result']['opening_hours']['periods'][0]['close']['time'])
+  #       @company = Company.find_by(places_id: places_id ).update(sunday_open: @response['result']['opening_hours']['periods'][0]['open']['time'])
+  #     end
+  #     if @response@response['result']['opening_hours']['periods'][1].nil? == true
+  #       @company = Company.find_by(places_id: places_id ).update(monday_closed: 0)
+  #       @company = Company.find_by(places_id: places_id ).update(monday_open: 0)
+  #     else
+  #       @company = Company.find_by(places_id: places_id ).update(monday_closed: @response['result']['opening_hours']['periods'][1]['close']['time'])
+  #       @company = Company.find_by(places_id: places_id ).update(monday_open: @response['result']['opening_hours']['periods'][1]['open']['time'])
+  #     end
+  #     if @response@response['result']['opening_hours']['periods'][2].nil? == true
+  #       @company = Company.find_by(places_id: places_id ).update(tuesday_closed: 0)
+  #       @company = Company.find_by(places_id: places_id ).update(tuesday_open: 0)
+  #     else
+  #       @company = Company.find_by(places_id: places_id ).update(tuesday_closed: @response['result']['opening_hours']['periods'][2]['close']['time'])
+  #       @company = Company.find_by(places_id: places_id ).update(tuesday_open: @response['result']['opening_hours']['periods'][2]['open']['time'])
+  #     end
+  #     if @response@response['result']['opening_hours']['periods'][3].nil? == true
+  #       @company = Company.find_by(places_id: places_id ).update(wednesday_closed: 0)
+  #       @company = Company.find_by(places_id: places_id ).update(wednesday_open: 0)
+  #     else
+  #       @company = Company.find_by(places_id: places_id ).update(wednesday_closed: @response['result']['opening_hours']['periods'][3]['close']['time'])
+  #       @company = Company.find_by(places_id: places_id ).update(wednesday_open: @response['result']['opening_hours']['periods'][3]['open']['time'])
+  #     end
+  #     if @response@response['result']['opening_hours']['periods'][4].nil? == true
+  #       @company = Company.find_by(places_id: places_id ).update(thursday_closed: 0)
+  #       @company = Company.find_by(places_id: places_id ).update(thursday_open: 0)
+  #     else
+  #       @company = Company.find_by(places_id: places_id ).update(thursday_closed: @response['result']['opening_hours']['periods'][4]['close']['time'])
+  #       @company = Company.find_by(places_id: places_id ).update(thursday_open: @response['result']['opening_hours']['periods'][4]['open']['time'])
+  #     end
+  #     if @response@response['result']['opening_hours']['periods'][5].nil? == true
+  #       @company = Company.find_by(places_id: places_id ).update(friday_closed: 0)
+  #       @company = Company.find_by(places_id: places_id ).update(friday_open: 0)
+  #     else
+  #       @company = Company.find_by(places_id: places_id ).update(friday_closed: @response['result']['opening_hours']['periods'][5]['close']['time'])
+  #       @company = Company.find_by(places_id: places_id ).update(friday_open: @response['result']['opening_hours']['periods'][5]['open']['time'])
+  #     end
+  #     if @response@response['result']['opening_hours']['periods'][6].nil? == true
+  #       @company = Company.find_by(places_id: places_id ).update(saturday_closed: 0)
+  #       @company = Company.find_by(places_id: places_id ).update(saturday_open: 0)
+  #     else
+  #       @company = Company.find_by(places_id: places_id ).update(saturday_closed: @response['result']['opening_hours']['periods'][6]['close']['time'])
+  #       @company = Company.find_by(places_id: places_id ).update(saturday_open: @response['result']['opening_hours']['periods'][5]['open']['time'])
+  #     end
+  #
+  #
+  #   end
+  # end
 
   def return_open_places(company)
     # byebug
