@@ -152,7 +152,6 @@ infowindows = [];
 							icon: 'https://images-findavenue.s3-ap-southeast-2.amazonaws.com/green-dot.png'
         		});
 					  marker.addListener("click", function(mapsMouseEvent) {
-             console.log(markers);
 							mark = returnMarker(markers, mapsMouseEvent.latLng);
 							closeInfowindows(infowindows);
 							infowindow.open(map, mark);
@@ -166,7 +165,6 @@ infowindows = [];
 							icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
         		});
 					  marker.addListener("click", function(mapsMouseEvent) {
-             console.log(markers);
 							mark = returnMarker(markers, mapsMouseEvent.latLng);
 							closeInfowindows(infowindows);
 							infowindow.open(map, mark);
@@ -181,7 +179,6 @@ infowindows = [];
         		});
 
 					  marker.addListener("click", function(mapsMouseEvent) {
-             console.log(markers);
 
 							mark = returnMarker(markers, mapsMouseEvent.latLng);
 							closeInfowindows(infowindows);
@@ -214,9 +211,6 @@ infowindows = [];
               infowindow.open(map, mark);
             });
           }
-							markers.push(marker);
-              console.log(markers);
-              console.log(infowindows);
 							// infowindow.open(map, marker);
 							if(maps_data[i]['color'] == 'red'){
 								infowindow.setContent(maps_data[i]["name"] + " | " + "<a style='color:blue;' href='http://maps.google.com/maps?q=" + encodeURIComponent( maps_data[i]["address"] ) + "' target='_blank'>"+  maps_data[i]["address"]  +  " </a> | <button class='inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800' onclick=toggleModal('modal-id');  onmouseover = document.getElementById('company_id').value="+maps_data[i]['id']+"> Join Waitlist. </button>" )
@@ -250,7 +244,7 @@ function returnMarker(markers, info){
 	for(i=0; i<markers.length; i++){
 		//console.log("markers: " + markers[i].position.lat());
 		//console.log("markers: " + markers[i].title);
-		console.log("infowindow: " + info.content);
+
 		if((markers[i].position.lat() == info.lat()) && markers[i].position.lng() == info.lng()){
 			mark = markers[i];
 		}
